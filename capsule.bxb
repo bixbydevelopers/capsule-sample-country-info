@@ -1,0 +1,17 @@
+capsule {
+  id (playground.countryinfo)
+  version (0.1.0)
+  format (3)
+  targets {
+    target (bixby-mobile-en-US)
+  }
+  store-countries {
+    all
+  }
+  store-sections {
+    section (EducationAndReference)
+  }
+  runtime-version (9) {
+    js-runtime-version (2)
+  }
+}

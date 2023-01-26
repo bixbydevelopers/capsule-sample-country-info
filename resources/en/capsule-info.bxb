@@ -1,0 +1,8 @@
+capsule-info {
+  display-name (Country Information)
+  developer-name (Roger Kibbe)
+  description ("Country Information Advanced Bixby Tutorial")
+  dispatch-name (Country Info)
+  // Create and set a path for your icon asset
+  // icon-asset (images/icons/example.png)
+}

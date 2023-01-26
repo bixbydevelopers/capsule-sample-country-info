@@ -1,0 +1,44 @@
+result-view {
+  match: Country (country)
+
+  message {
+    template () {
+      speech ("#{value(country.commonName)} is a country located in #{value(country.continents)}. The capital is #{value(country.capital)} and the population is #{value(country.population)}. The official language is #{value(country.languages)}.")
+    }
+  }
+  render {
+    layout {
+      section {
+        content {
+          single-line {
+            text ("Name: #{value(country.commonName)}")
+          }
+          paragraph {
+            value ("Official Name: #{value(country.officialName)}")
+          }
+          paragraph {
+            value ("Currencies: #{value(country.currencyNames)}")
+          }
+          single-line {
+            text ("Capital: #{value(country.capital)}")
+          }
+          paragraph {
+            value ("Languages: #{value(country.languages)}")
+          }
+          paragraph {
+            value ("Borders: #{value(country.borders)}")
+          }
+          single-line {
+            text ("Population: #{value(country.population)}")
+          }
+          single-line {
+            text ("Continents: #{value(country.continents)}")
+          }
+          image {
+            url ("[#{value(country.flagURL)}]")
+          }
+        }
+      }
+    }
+  }
+}

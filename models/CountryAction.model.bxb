@@ -1,0 +1,15 @@
+action (CountryAction) {
+  description (Handle request for country info)
+  type (Search)
+  collect {
+    input (countryName) {
+      type (CountryName)
+      min (Required) max (One)
+    }
+    input (information) {
+      type (Information)
+      min (Optional) max (One)
+    }
+  }
+  output (Country)
+}

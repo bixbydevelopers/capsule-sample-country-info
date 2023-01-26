@@ -1,0 +1,8 @@
+endpoints {
+  action-endpoints {
+    action-endpoint (CountryAction) {
+      accepted-inputs (countryName, information)
+      local-endpoint (GetCountryInfo.js)
+    }
+  }
+}
