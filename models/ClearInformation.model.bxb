@@ -1,0 +1,6 @@
+action (ClearInformation) {
+  type(Constructor)
+  description (Reset information for new query)
+  collect {}
+  output (ResetFlag) 
+}

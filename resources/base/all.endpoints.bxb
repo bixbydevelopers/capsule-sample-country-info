@@ -1,8 +1,12 @@
 endpoints {
   action-endpoints {
     action-endpoint (CountryAction) {
-      accepted-inputs (countryName, information)
+      accepted-inputs (countryName, information,countryCode,resetFlag)
       local-endpoint (GetCountryInfo.js)
+    }
+    action-endpoint (ClearInformation) {
+      accepted-inputs ()
+      local-endpoint (ClearInformation.js)
     }
   }
 }

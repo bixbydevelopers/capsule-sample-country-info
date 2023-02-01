@@ -1,0 +1,5 @@
+train (t-10ppha1atro33a5nihxwdokqo) {
+  utterance ("[g:CountryAction] tell me about (peoples republic of china)[v:CountryName]")
+  enabled (false)
+  last-modified (1674865689902)
+}

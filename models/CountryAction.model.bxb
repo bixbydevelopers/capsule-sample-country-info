@@ -6,8 +6,16 @@ action (CountryAction) {
       type (CountryName)
       min (Required) max (One)
     }
+    input (countryCode) {
+      type (CountryCode)
+      min (Optional) max (One)
+    }
     input (information) {
       type (Information)
+      min (Optional) max (Many)
+    }
+    input (resetFlag) {
+      type (ResetFlag)
       min (Optional) max (One)
     }
   }

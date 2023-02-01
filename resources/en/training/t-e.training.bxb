@@ -1,0 +1,4 @@
+train (t-ev9vjqfg4u01u11ry7fq8i1lc) {
+  utterance ("[g:CountryAction] what is the (capital)[v:Information:capital] of (japan)[v:CountryName]")
+  last-modified (1675210705786)
+}

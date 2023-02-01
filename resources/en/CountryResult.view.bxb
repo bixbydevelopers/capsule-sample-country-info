@@ -1,44 +1,88 @@
 result-view {
   match: Country (country)
 
+  
   message {
-    template () {
-      speech ("#{value(country.commonName)} is a country located in #{value(country.continents)}. The capital is #{value(country.capital)} and the population is #{value(country.population)}. The official language is #{value(country.languages)}.")
+    if (exists(country.multipleOptions)) {
+      template ("Multiple countries or territories have that name, choose the one you want information about")
+
     }
+    else-if (exists(country.information)) {
+      //template ("#{macro('FirstInfo', country, country.information[0])} [and #{macro('MoreInfo', country, country.information[1])}]")
+      //template ("[#{list(macroEach('MoreInfo', country.information,1), country)}]")
+      template ("#{macro('FirstInfo', country, country.information[0])} [and #{list(macroEach('MoreInfo', subtract(country.information, country.information[0]),1,country), 'value')}]")
+      // if(contains(country.information, 'currency')) {
+      //   template ("#{value(country.commonName)} uses #{value(country.currencyNames)} as its #{size(country.currencyNames)>1 ? 'currencies':'currency'}")
+      // }
+    }
+    else {
+      template () {
+        speech ("#{value(country.commonName)} is located in #{value(country.continents)}. The capital is #{value(country.capital)} and the population is #{value(country.population)}. The official language is #{value(country.languages)} and the currency is #{value(country.currencyNames)}.")
+      }
+
+    }
+
   }
   render {
-    layout {
-      section {
-        content {
-          single-line {
-            text ("Name: #{value(country.commonName)}")
+    if (exists(country.multipleOptions)) {
+      list-of (country.multipleOptions) {
+        where-each (countryOpt) {
+          cell-card {
+            slot2 {
+              content {
+                order (PrimarySecondary)
+                primary ("#{value (countryOpt.countryName)}")
+                secondary ("#{value (countryOpt.countryOfficialName)}")
+              }
+            }
+            on-click {
+              intent {
+                value: CountryName$expr(countryOpt.countryName)
+                value: CountryCode$expr(countryOpt.countryCode)
+                value: Information$expr(country.information)
+                goal: Country
+              }
+            }
           }
-          paragraph {
-            value ("Official Name: #{value(country.officialName)}")
-          }
-          paragraph {
-            value ("Currencies: #{value(country.currencyNames)}")
-          }
-          single-line {
-            text ("Capital: #{value(country.capital)}")
-          }
-          paragraph {
-            value ("Languages: #{value(country.languages)}")
-          }
-          paragraph {
-            value ("Borders: #{value(country.borders)}")
-          }
-          single-line {
-            text ("Population: #{value(country.population)}")
-          }
-          single-line {
-            text ("Continents: #{value(country.continents)}")
-          }
-          image {
-            url ("[#{value(country.flagURL)}]")
+    
+        }
+      }
+    }
+    else {
+      layout {
+        section {
+          content {
+            single-line {
+              text ("Name: #{value(country.commonName)}")
+            }
+            paragraph {
+              value ("Official Name: #{value(country.officialName)}")
+            }
+            paragraph {
+              value ("Currencies: #{value(country.currencyNames)}")
+            }
+            single-line {
+              text ("Capital: #{value(country.capital)}")
+            }
+            paragraph {
+              value ("Languages: #{value(country.languages)}")
+            }
+            paragraph {
+              value ("Borders: #{value(country.borders)}")
+            }
+            single-line {
+             text ("Population: #{integer(country.population)}")
+            }
+            single-line {
+              text ("Continents: #{value(country.continents)}")
+            }
+            image {
+              url ("[#{value(country.flagURL)}]")
+            }
           }
         }
       }
     }
+
   }
 }

@@ -1,0 +1,4 @@
+train (t-pv7k5f27foerctxw1qa112kv3) {
+  utterance ("[g:CountryAction] what is the (capital)[v:Information:capital], (population)[v:Information:population] and (language)[v:Information:language] of (peru)[v:CountryName]")
+  last-modified (1675206953686)
+}

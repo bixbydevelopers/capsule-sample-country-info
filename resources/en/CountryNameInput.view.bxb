@@ -12,7 +12,7 @@ input-view {
         value: viv.core.FormElement(countryName)
       }
       elements {
-        textarea {
+        text-input {
           id ("countryName")
           type (CountryName)
           label (Text)

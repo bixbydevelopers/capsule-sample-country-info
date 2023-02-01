@@ -1,0 +1,49 @@
+macro-def (MoreInfo) {
+  params {
+    param (country) {
+      type (Country)
+      min (Required) max (One)
+    }
+    param (information) {
+      type (Information)
+      //min (Required) max (One)
+    }
+  }
+  content {
+    switch(information) {
+      case (currency) {
+        template ("the #{size(country.currencyNames)>1 ? 'currencies':'currency'} used #{size(country.currencyNames)>1 ? 'are':'is'} #{value(country.currencyNames)}")
+      }
+      case (continent) {
+        template ("it's in #{value(country.continents)}")
+      }
+      case (language) {
+        template ("the #{size(country.languages)>1 ? 'languages':'language'} used #{size(country.languages)>1 ? 'are':'is'} #{value(country.languages)}")
+      }
+      case (official) {
+        template ("the official name is #{value(country.officialName)}")
+      }
+      case (capital) {
+        template ("the capital is #{value(country.capital)}")
+      }
+      case (population) {
+        template ("the population is #{integer(country.population)}")
+      }
+      case (flag) {
+        template ("The flag of #{value(country.commonName)} is shown on your screen")
+      }     
+      default {
+        template("Something went wrong")
+      }
+    }
+  }
+}
+
+//   symbol (capital)
+//   symbol (currency)
+//   symbol (official name)
+//   symbol (population)
+//   symbol (continent)
+//   symbol (language)
+//   symbol (map)
+//   symbol (flag)

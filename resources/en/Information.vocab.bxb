@@ -1,0 +1,23 @@
+vocab (Information) {
+  "capital" {"capital" "capital city"}
+  "currency" {"currency" "currencies" "money"}
+  "official" {"official" "officialname" }
+  "population" {"population"}
+  "continent" {"continent", "location"}
+  "language" {"language"}
+  "map" {"map"}
+  "flag" {"flag"}
+}
+
+
+// enum (Information) {
+//   description (Information you can request about a country)
+//   symbol (capital)
+//   symbol (currency)
+//   symbol (official name)
+//   symbol (population)
+//   symbol (continent)
+//   symbol (language)
+//   symbol (map)
+//   symbol (flag)
+// }

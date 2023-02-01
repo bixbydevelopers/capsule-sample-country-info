@@ -1,0 +1,4 @@
+train (t-2f1ebfo2sz5acsxmmljrpxmba) {
+  utterance ("[g:CountryAction] what is the (language)[v:Information:language] of (south korea)[v:CountryName]")
+  last-modified (1675206982792)
+}

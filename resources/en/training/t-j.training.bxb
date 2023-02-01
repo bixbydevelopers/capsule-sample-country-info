@@ -1,0 +1,4 @@
+train (t-j7b6p178ayoh7wfm4lsl3zhs1) {
+  utterance ("[g:CountryAction:continue] what is the (capital)[v:Information:capital]")
+  last-modified (1675210823863)
+}

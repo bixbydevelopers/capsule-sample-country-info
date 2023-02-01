@@ -1,7 +1,7 @@
 structure (Country) {
   description (CountryInfo)
   property (commonName) {
-    type (viv.core.Text)
+    type (CountryName)
     visibility (Private)
     min (Optional) max (One)
   }
@@ -9,6 +9,11 @@ structure (Country) {
     type (viv.core.Text)
     visibility (Private)
     min (Optional) max (One)
+  }
+  property (countryCode) {
+    type (CountryCode)
+    visibility (Private)
+    min (Optional) max (Many)
   }
   property (currencyNames) {
     type (viv.core.Text)
@@ -50,9 +55,12 @@ structure (Country) {
     visibility (Private)
     min (Optional) max (One)
   }
-  property (resultJSON) {
-    type (viv.core.Text)
-    visibility (Private)
-    min (Required) max (One)
+  property (multipleOptions) {
+    type (MultipleOptions)
+    min (Optional) max (Many)
+  }
+  property (information) {
+    type (Information)
+    min (Optional) max (Many)
   }
 }
