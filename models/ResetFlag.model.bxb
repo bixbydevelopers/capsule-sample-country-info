@@ -1,6 +1,0 @@
-boolean (ResetFlag) {
-  description (__DESCRIPTION__)
-  features {
-    transient
-  }
-}

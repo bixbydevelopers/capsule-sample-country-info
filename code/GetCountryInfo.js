@@ -5,14 +5,23 @@ export default function (input) {
     countryName,
     information,
     countryCode,
-    resetFlag
+    resetInformationFlag
   } = input
 
-  
-  console.log ("country name = " + countryName +" information = " + information + " countryCode = " + countryCode + " reset flag = " + resetFlag)
+  //console.log ("country name = " + countryName +" information = " + information + " countryCode = " + countryCode + " reset flag = " + resetInformationFlag)
 
-  if (resetFlag) {
+  if (resetInformationFlag) {
     information = null;
+  }
+
+  const overRides = new Map([
+    ["united states", "USA"],
+    ["china", "CHN"],
+  ]);
+
+  if (overRides.get(countryName)) {
+    countryCode = overRides.get(countryName)
+    countryName = null
   }
 
   let options = {
@@ -20,13 +29,11 @@ export default function (input) {
   }
 
   let url;
-  if (countryCode) {
+  if (countryCode && !countryName) {
     url = encodeURI("https://restcountries.com/v3.1/alpha/".concat(countryCode))
   } else {
     url = encodeURI("https://restcountries.com/v3.1/name/".concat(countryName))
   }
-
-  
 
   //  let response = JSON.parse('[{"name":{"common":"Peru","official":"Republic of Peru","nativeName":{"aym":{"official":"Piruw Suyu","common":"Piruw"},"que":{"official":"Piruw Ripuwlika","common":"Piruw"},"spa":{"official":"República del Perú","common":"Perú"}}},"tld":[".pe"],"cca2":"PE","ccn3":"604","cca3":"PER","cioc":"PER","independent":true,"status":"officially-assigned","unMember":true,"currencies":{"PEN":{"name":"Peruvian sol","symbol":"S/ "}},"idd":{"root":"+5","suffixes":["1"]},"capital":["Lima"],"altSpellings":["PE","Republic of Peru","República del Perú"],"region":"Americas","subregion":"South America","languages":{"aym":"Aymara","que":"Quechua","spa":"Spanish"},"translations":{"ara":{"official":"جمهورية بيرو","common":"بيرو"},"bre":{"official":"Republik Perou","common":"Perou"},"ces":{"official":"Peruánská republika","common":"Peru"},"cym":{"official":"Republic of Peru","common":"Peru"},"deu":{"official":"Republik Peru","common":"Peru"},"est":{"official":"Peruu Vabariik","common":"Peruu"},"fin":{"official":"Perun tasavalta","common":"Peru"},"fra":{"official":"République du Pérou","common":"Pérou"},"hrv":{"official":"Republika Peru","common":"Peru"},"hun":{"official":"Perui Köztársaság","common":"Peru"},"ita":{"official":"Repubblica del Perù","common":"Perù"},"jpn":{"official":"ペルー共和国","common":"ペルー"},"kor":{"official":"페루 공화국","common":"페루"},"nld":{"official":"Republiek Peru","common":"Peru"},"per":{"official":"جمهوری پرو","common":"پرو"},"pol":{"official":"Republika Peru","common":"Peru"},"por":{"official":"República do Peru","common":"Perú"},"rus":{"official":"Республика Перу","common":"Перу"},"slk":{"official":"Peruánska republika","common":"Peru"},"spa":{"official":"República de Perú","common":"Perú"},"swe":{"official":"Republiken Peru","common":"Peru"},"urd":{"official":"جمہوریہ پیرو","common":"پیرو"},"zho":{"official":"秘鲁共和国","common":"秘鲁"}},"latlng":[-10.0,-76.0],"landlocked":false,"borders":["BOL","BRA","CHL","COL","ECU"],"area":1285216.0,"demonyms":{"eng":{"f":"Peruvian","m":"Peruvian"},"fra":{"f":"Péruvienne","m":"Péruvien"}},"flag":"\uD83C\uDDF5\uD83C\uDDEA","maps":{"googleMaps":"https://goo.gl/maps/uDWEUaXNcZTng1fP6","openStreetMaps":"https://www.openstreetmap.org/relation/288247"},"population":32971846,"gini":{"2019":41.5},"fifa":"PER","car":{"signs":["PE"],"side":"right"},"timezones":["UTC-05:00"],"continents":["South America"],"flags":["https://flagcdn.com/pe.svg","https://flagcdn.com/w320/pe.png"]}]')
 
@@ -37,22 +44,12 @@ export default function (input) {
 
   if (response.length > 1) {
     console.log("more than 1")
-    // Get common name for each country
-    //response.forEach(item => multipleOptions.push(item['name']['official']));
-
-    response.forEach(item => multipleOptions.push({"countryName": item['name']['common'],
-    "countryOfficialName": item['name']['official'],
-    "countryCode": item['cca3']}));
-    // for (const country of response) {
-    //   const name = country['name']['official']
-    //   const code = country['name']['official']
-    //   multipleOptions.push({"countryName": name})
-    // }
-
+    response.forEach(item => multipleOptions.push({
+      "countryName": item['name']['common'],
+      "countryOfficialName": item['name']['official'],
+      "countryCode": item['cca3']
+    }));
   }
-  // else {
-  //   multipleOptions = response[0]['name']['common']
-  // }
 
   let currencies = []
   let curr = response[0]['currencies']
@@ -82,7 +79,6 @@ export default function (input) {
     }
     console.log("borders = " + JSON.stringify(borders))
   }
-
 
   return {
     "commonName": response[0]['name']['common'],

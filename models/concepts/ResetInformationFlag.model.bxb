@@ -1,0 +1,6 @@
+boolean (ResetInformationFlag) {
+  description (Flag to reset Information)
+  features {
+    transient
+  }
+}

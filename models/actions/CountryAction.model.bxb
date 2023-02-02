@@ -14,8 +14,8 @@ action (CountryAction) {
       type (Information)
       min (Optional) max (Many)
     }
-    input (resetFlag) {
-      type (ResetFlag)
+    input (resetInformationFlag) {
+      type (ResetInformationFlag)
       min (Optional) max (One)
     }
   }

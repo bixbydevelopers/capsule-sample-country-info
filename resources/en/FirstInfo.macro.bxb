@@ -10,7 +10,6 @@ macro-def (FirstInfo) {
     }
   }
   content {
-    //switch(country.information[0]) {
     switch(information) {
       case (currency) {
         template ("#{value(country.commonName)} uses #{value(country.currencyNames)} as its #{size(country.currencyNames)>1 ? 'currencies':'currency'}")

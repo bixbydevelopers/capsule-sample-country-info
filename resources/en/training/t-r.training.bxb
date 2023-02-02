@@ -1,4 +1,4 @@
 train (t-rm8c42fm5uinez4hnjkcyqg07) {
-  utterance ("[g:CountryAction,r:ClearInformation] tell me about (peru)[v:CountryName]")
-  last-modified (1675210283021)
+  utterance ("[g:CountryAction,v:ResetInformationFlag:true] tell me about (peru)[v:CountryName]")
+  last-modified (1675287610305)
 }

@@ -1,31 +1,43 @@
 result-view {
   match: Country (country)
 
-  
   message {
     if (exists(country.multipleOptions)) {
-      template ("Multiple countries or territories have that name, choose the one you want information about")
-
+      // handled by navigation mode below
     }
     else-if (exists(country.information)) {
-      //template ("#{macro('FirstInfo', country, country.information[0])} [and #{macro('MoreInfo', country, country.information[1])}]")
-      //template ("[#{list(macroEach('MoreInfo', country.information,1), country)}]")
       template ("#{macro('FirstInfo', country, country.information[0])} [and #{list(macroEach('MoreInfo', subtract(country.information, country.information[0]),1,country), 'value')}]")
-      // if(contains(country.information, 'currency')) {
-      //   template ("#{value(country.commonName)} uses #{value(country.currencyNames)} as its #{size(country.currencyNames)>1 ? 'currencies':'currency'}")
-      // }
     }
     else {
       template () {
         speech ("#{value(country.commonName)} is located in #{value(country.continents)}. The capital is #{value(country.capital)} and the population is #{value(country.population)}. The official language is #{value(country.languages)} and the currency is #{value(country.currencyNames)}.")
       }
-
     }
-
   }
   render {
     if (exists(country.multipleOptions)) {
       list-of (country.multipleOptions) {
+        navigation-mode {
+          read-many-and-next {
+            page-size (4)
+            list-summary {
+              template ("Multiple countries or territories have that name.")
+            }
+            page-content (page) {
+              overflow-statement ("There are no more countries")
+              underflow-statement ("You are on the first list of countries")
+              next-page-question {
+                template ("Which would you like? #{$handsFree ? 'Or say next to hear more options.':''}")
+              }
+              page-marker {
+                if (exists(page) && !isFirstNavPage(page) && isLastNavPage(page)) {
+                  template ("Which would you like?")
+                }
+              }
+              item-summary-join-mode (Standalone)
+            }
+          }
+        }
         where-each (countryOpt) {
           cell-card {
             slot2 {
@@ -37,14 +49,18 @@ result-view {
             }
             on-click {
               intent {
-                value: CountryName$expr(countryOpt.countryName)
-                value: CountryCode$expr(countryOpt.countryCode)
-                value: Information$expr(country.information)
-                goal: Country
+                // Set country name to empty so continuations with country name work
+                value: CountryName$expr ('')
+                // Pass country code and information to action
+                value: CountryCode$expr (countryOpt.countryCode)
+                value: Information$expr (country.information)
+                goal: CountryAction
               }
             }
           }
-    
+          spoken-summary {
+            template ("#{value(countryOpt.countryName)}")
+          }
         }
       }
     }
@@ -71,7 +87,7 @@ result-view {
               value ("Borders: #{value(country.borders)}")
             }
             single-line {
-             text ("Population: #{integer(country.population)}")
+              text ("Population: #{integer(country.population)}")
             }
             single-line {
               text ("Continents: #{value(country.continents)}")

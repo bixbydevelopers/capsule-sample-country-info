@@ -8,7 +8,4 @@ enum (Information) {
   symbol (language)
   symbol (map)
   symbol (flag)
-  // features {
-  //   transient
-  // }  
 }
