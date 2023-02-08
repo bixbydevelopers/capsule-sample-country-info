@@ -15,6 +15,7 @@ export default function (input) {
   }
 
   // Over rides provide shorts cuts to common queries e.g. if you enter "united states" the over ride sets the country code to USA an uses it
+  // This is necessary because of the oddities of the API
   if (OVERRIDES.get(countryName)) {
     countryCode = OVERRIDES.get(countryName.toLowerCase())
     countryName = null

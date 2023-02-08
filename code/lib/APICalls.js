@@ -3,7 +3,9 @@ import fail from 'fail'
 import console from 'console'
 import { COUNTRYCODETONAME, COUNTRYAPI } from "./Data"
 
-export function getCountryInfo(countryName, countryCode, debug) {
+export {getCountryInfo, getCountryCodeToName}
+
+function getCountryInfo(countryName, countryCode, debug) {
   let response
   if (debug) {
     return COUNTRYAPI
@@ -30,7 +32,7 @@ export function getCountryInfo(countryName, countryCode, debug) {
   return response.parsed
 }
 
-export function getCountryCodeToName(debug) {
+function getCountryCodeToName(debug) {
   let codeResponse
   if (debug) {
     return COUNTRYCODETONAME

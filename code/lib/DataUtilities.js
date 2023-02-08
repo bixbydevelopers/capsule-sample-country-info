@@ -1,7 +1,9 @@
 import console from 'console'
 import {getCountryCodeToName} from "./APICalls"
 
-export function checkMultipleOptions(response) {
+export {checkMultipleOptions, getCurrencies, getLanguages, getBorders}
+
+function checkMultipleOptions(response) {
   let multipleOptions = []
   if (response.length > 1) {
     response.forEach(item => multipleOptions.push({
@@ -13,7 +15,7 @@ export function checkMultipleOptions(response) {
   return multipleOptions
 }
 
-export function getCurrencies(response) {
+function getCurrencies(response) {
     let currencies= []
     let curr = response[0]['currencies']
     for (var abb in curr) {
@@ -22,7 +24,7 @@ export function getCurrencies(response) {
     return currencies
 }
 
-export function getLanguages(response) {
+function getLanguages(response) {
     let languages= []
     let lang = response[0]['languages']
     for (var labb in lang) {
@@ -32,7 +34,7 @@ export function getLanguages(response) {
 }
 
 // Get all borders of the country and convert code into country name
-export function getBorders (response, debug) {
+function getBorders (response, debug) {
     let borders = []
     let bords = response[0]['borders']
     let codeResponse = getCountryCodeToName(debug)
