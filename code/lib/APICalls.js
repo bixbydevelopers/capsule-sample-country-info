@@ -40,7 +40,9 @@ function getCountryCodeToName(debug) {
     codeResponse = http.getUrl("https://restcountries.com/v2/all?fields=name,alpha3Code", { format: 'json', returnHeaders: true})
   }
   if (!codeResponse || codeResponse.status != 200) {
+    // will gracefully degrade e.g, not show borders
     return null
   }
+  //return response - specify parsed to get parsed value from return object (needed with returnHeaders = true)
   return codeResponse.parsed
 }

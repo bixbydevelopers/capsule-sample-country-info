@@ -1,5 +1,4 @@
 input-view {
-  //match: CountryName (countryName)
   match: CountryAction~countryInput
 
   message {
