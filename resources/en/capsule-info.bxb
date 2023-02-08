@@ -3,6 +3,9 @@ capsule-info {
   developer-name (Roger Kibbe)
   description ("Country Information Advanced Bixby Tutorial")
   dispatch-name (Country Info)
-  // Create and set a path for your icon asset
-  // icon-asset (images/icons/example.png)
+  search-keywords {
+    keyword (country information)
+
+  }
+  icon-asset (/images/countries.png)
 }

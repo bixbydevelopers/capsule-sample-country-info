@@ -1,0 +1,58 @@
+macro-def(MultipleOptions) {
+  params {
+    param (country) {
+      type (Country)
+      min (Required)
+      max (Many)
+    }
+  }
+  
+  content {
+    list-of (country.multipleOptions) {
+      navigation-mode {
+        read-many-and-next {
+          page-size (4)
+          list-summary {
+            template ("Multiple countries or territories have that name.")
+          }
+          page-content (page) {
+            overflow-statement ("There are no more countries")
+            underflow-statement ("You are on the first list of countries")
+            next-page-question {
+              template ("Which would you like? #{$handsFree ? 'Or say next to hear more options.':''}")
+            }
+            page-marker {
+              if (exists(page) && !isFirstNavPage(page) && isLastNavPage(page)) {
+                template ("Which would you like?")
+              }
+            }
+            item-summary-join-mode (Standalone)
+          }
+        }
+      }
+      where-each (countryOpt) {
+        cell-card {
+          slot2 {
+            content {
+              order (PrimarySecondary)
+              primary ("#{value (countryOpt.countryName)}")
+              secondary ("#{value (countryOpt.countryOfficialName)}")
+            }
+          }
+          on-click {
+            intent {
+              // Set country name to empty so continuations with country name work
+              value: CountryName$expr ('')
+              value: CountryCode$expr (countryOpt.countryCode)
+              value: Information$expr (country.information)
+              goal: CountryAction
+            }
+          }
+        }
+        spoken-summary {
+          template ("#{value(countryOpt.countryName)}")
+        }
+      }
+    }
+  }
+}

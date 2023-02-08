@@ -1,0 +1,44 @@
+import http from 'http'
+import fail from 'fail'
+import console from 'console'
+import { COUNTRYCODETONAME, COUNTRYAPI } from "./Data"
+
+export function getCountryInfo(countryName, countryCode, debug) {
+  let response
+  if (debug) {
+    return COUNTRYAPI
+  } else {
+    let url
+    if (countryCode && !countryName) {
+      url = encodeURI("https://restcountries.com/v3.1/alpha/".concat(countryCode))
+    } else {
+      url = encodeURI("https://restcountries.com/v3.1/name/".concat(countryName))
+    }
+
+    response = http.getUrl(url, { format: 'json', returnHeaders: true })
+
+    if (response && response.status == 404) {
+      if (debug) console.log("country not found error")
+      throw fail.checkedError('Country not found', 'CountryNotFound', {})
+    }
+    if (!response || response.status != 200) {
+      console.log("error: response = " + response)
+      throw fail.checkedError('Bad API call', 'APIFailure', {})
+    }
+  }
+  //return response - specify parsed to get parsed value from return object (needed with returnHeaders = true)
+  return response.parsed
+}
+
+export function getCountryCodeToName(debug) {
+  let codeResponse
+  if (debug) {
+    return COUNTRYCODETONAME
+  } else {
+    codeResponse = http.getUrl("https://restcountries.com/v2/all?fields=name,alpha3Code", { format: 'json', returnHeaders: true})
+  }
+  if (!codeResponse || codeResponse.status != 200) {
+    return null
+  }
+  return codeResponse.parsed
+}

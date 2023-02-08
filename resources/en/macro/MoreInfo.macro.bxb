@@ -6,7 +6,7 @@ macro-def (MoreInfo) {
     }
     param (information) {
       type (Information)
-      //min (Required) max (One)
+      min (Required) max (One)
     }
   }
   content {
@@ -18,7 +18,7 @@ macro-def (MoreInfo) {
         template ("it's in #{value(country.continents)}")
       }
       case (language) {
-        template ("the #{size(country.languages)>1 ? 'languages':'language'} used #{size(country.languages)>1 ? 'are':'is'} #{value(country.languages)}")
+        template ("the #{size(country.languages)>1 ? 'languages':'language'} spoken #{size(country.languages)>1 ? 'are':'is'} #{value(country.languages)}")
       }
       case (official) {
         template ("the official name is #{value(country.officialName)}")
@@ -38,12 +38,3 @@ macro-def (MoreInfo) {
     }
   }
 }
-
-//   symbol (capital)
-//   symbol (currency)
-//   symbol (official name)
-//   symbol (population)
-//   symbol (continent)
-//   symbol (language)
-//   symbol (map)
-//   symbol (flag)

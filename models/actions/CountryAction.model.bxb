@@ -2,13 +2,18 @@ action (CountryAction) {
   description (Handle request for country info)
   type (Search)
   collect {
-    input (countryName) {
-      type (CountryName)
-      min (Required) max (One)
-    }
-    input (countryCode) {
-      type (CountryCode)
-      min (Optional) max (One)
+    input-group (countryInput) {
+      requires (OneOf)
+      collect {
+        input (countryName) {
+          type (CountryName)
+          min (Optional) max (One)
+        }
+        input (countryCode) {
+          type (CountryCode)
+          min (Optional) max (One)
+        }
+      }
     }
     input (information) {
       type (Information)
@@ -19,5 +24,26 @@ action (CountryAction) {
       min (Optional) max (One)
     }
   }
-  output (Country)
+  output (Country) {
+   throws {
+     error(CountryNotFound) {
+       on-catch {
+         replan {
+           dialog ("Sorry I cannot find a country named #{value(countryName)}.")
+           intent {
+             goal: CountryAction
+             value: $expr(information)
+           }
+         }
+       }
+     }
+     error (APIFailure) {
+       on-catch {
+         halt {
+           dialog("Sorry I'm unable to answer questions right now")
+         }
+       }
+     }
+   }
+  }
 }

@@ -1,0 +1,11 @@
+enum (Information) {
+  description (Information you can request about a country)
+  symbol (capital)
+  symbol (currency)
+  symbol (official)
+  symbol (population)
+  symbol (continent)
+  symbol (language)
+  symbol (map)
+  symbol (flag)
+}

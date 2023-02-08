@@ -1,0 +1,84 @@
+result-view {
+  match: Country (country) {
+    min (Required)
+  }
+  message {
+    
+    if (!exists(country.multipleOptions)) { // multiple options message handled in render
+      if (exists(country.information)) {
+        // Tell user specific information they requested
+        // The phrasing is broken up into two parts, the first part shows the first information requested e.g. "The capital of Egypt is Cairo"
+        // the 2nd part is all the other information requested e.g " and the language used is Arabic" etc
+        // the subtract EL removes the first part and passes on rest of the info requested to the macro
+        template ("#{macro('FirstInfo', country, country.information[0])} [and #{list(macroEach('MoreInfo', subtract(country.information, country.information[0]),1,country), 'value')}]")
+      } else {
+        // Generic information about a country
+        template () {
+          speech ("#{value(country.commonName)} is located in #{value(country.continents)}. The capital is #{value(country.capital)} and the population is #{value(country.population)}. The official #{size(country.languages)>1 ? 'languages are':'language is'} #{value(country.languages)} and the #{size(country.currencyNames)>1 ? 'currencies are':'currency is'} #{value(country.currencyNames)}.")
+        }
+      }
+    }
+    // else-if (exists(country.information)) {
+    //   // Tell user specific information they requested
+    //   // The phrasing is broken up into two parts, the first part shows the first information requested e.g. "The capital of Egypt is Cairo"
+    //   // the 2nd part is all the other information requested e.g " and the language used is Arabic" etc
+    //   // the subtract EL removes the first part and passes on rest of the info requested to the macro
+    //   template ("#{macro('FirstInfo', country, country.information[0])} [and #{list(macroEach('MoreInfo', subtract(country.information, country.information[0]),1,country), 'value')}]")
+    // }
+    // else {
+    //   // Generic information about a country
+    //   template () {
+    //     speech ("#{value(country.commonName)} is located in #{value(country.continents)}. The capital is #{value(country.capital)} and the population is #{value(country.population)}. The official #{size(country.languages)>1 ? 'languages are':'language is'} #{value(country.languages)} and the #{size(country.currencyNames)>1 ? 'currencies are':'currency is'} #{value(country.currencyNames)}.")
+    //   }
+    // }
+  }
+  render {
+    if (exists(country.multipleOptions)) {
+      macro (MultipleOptions) {
+        param (country) {
+          expression(country)
+        }
+      }
+    }
+    else {
+      layout {
+        section {
+          content {
+            single-line {
+              text ("Name: #{value(country.commonName)}")
+            }
+            paragraph {
+              value ("Official Name: #{value(country.officialName)}")
+            }
+            paragraph {
+              value ("#{size(country.currencyNames)>1 ? 'Currencies':'Currency'}: #{value(country.currencyNames)}")
+            }
+            single-line {
+              text ("Capital: #{value(country.capital)}")
+            }
+            paragraph {
+              value ("#{size(country.languages)>1 ? 'Languages':'Language'}: #{value(country.languages)}")
+            }
+            paragraph {
+              value ("[Borders: #{value(country.borders)}]")
+            }
+            single-line {
+              text ("Population: #{integer(country.population)}")
+            }
+            single-line {
+              text ("Continents: #{value(country.continents)}")
+            }
+            image {
+              url ("[#{value(country.flagURL)}]")
+            }
+            attribution-link {
+              label(Show Google Map)
+              url("[#{value(country.googleMapsURL)}]")
+            }
+            
+          }
+        }
+      }
+    }
+  }
+}

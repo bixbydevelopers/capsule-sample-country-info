@@ -12,13 +12,13 @@ macro-def (FirstInfo) {
   content {
     switch(information) {
       case (currency) {
-        template ("#{value(country.commonName)} uses #{value(country.currencyNames)} as its #{size(country.currencyNames)>1 ? 'currencies':'currency'}")
+        template ("[#{value(country.commonName)} uses #{value(country.currencyNames)} as its #{size(country.currencyNames)>1 ? 'currencies':'currency'}]")
       }
       case (continent) {
         template ("#{value(country.commonName)} is in #{value(country.continents)}")
       }
       case (language) {
-        template ("The #{size(country.languages)>1 ? 'languages':'language'} used in #{value(country.commonName)} #{size(country.languages)>1 ? 'are':'is'} #{value(country.languages)}")
+        template ("The #{size(country.languages)>1 ? 'languages':'language'} spoken in #{value(country.commonName)} #{size(country.languages)>1 ? 'are':'is'} #{value(country.languages)}")
       }
       case (official) {
         template ("The official name of #{value(country.commonName)} is #{value(country.officialName)}")
@@ -38,12 +38,3 @@ macro-def (FirstInfo) {
     }
   }
 }
-
-//   symbol (capital)
-//   symbol (currency)
-//   symbol (official name)
-//   symbol (population)
-//   symbol (continent)
-//   symbol (language)
-//   symbol (map)
-//   symbol (flag)
