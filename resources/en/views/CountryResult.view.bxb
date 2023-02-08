@@ -44,8 +44,8 @@ result-view {
       layout {
         section {
           content {
-            single-line {
-              text ("Name: #{value(country.commonName)}")
+            paragraph {
+              value ("Name: #{value(country.commonName)}")
             }
             paragraph {
               value ("Official Name: #{value(country.officialName)}")
@@ -53,8 +53,8 @@ result-view {
             paragraph {
               value ("#{size(country.currencyNames)>1 ? 'Currencies':'Currency'}: #{value(country.currencyNames)}")
             }
-            single-line {
-              text ("Capital: #{value(country.capital)}")
+            paragraph {
+              value ("Capital: #{value(country.capital)}")
             }
             paragraph {
               value ("#{size(country.languages)>1 ? 'Languages':'Language'}: #{value(country.languages)}")
@@ -62,11 +62,11 @@ result-view {
             paragraph {
               value ("[Borders: #{value(country.borders)}]")
             }
-            single-line {
-              text ("Population: #{integer(country.population)}")
+            paragraph {
+              value ("Population: #{integer(country.population)}")
             }
-            single-line {
-              text ("Continents: #{value(country.continents)}")
+            paragraph {
+              value ("Continents: #{value(country.continents)}")
             }
             image {
               url ("[#{value(country.flagURL)}]")
