@@ -2,3 +2,7 @@ train (t-2f1ebfo2sz5acsxmmljrpxmba) {
   utterance ("[g:CountryAction] what is the (language)[v:Information:language] of (south korea)[v:CountryName]")
   last-modified (1675206982792)
 }
+train (t-2ft8f1zmp2w8rbsnxqytn17fd) {
+  utterance ("[g:CountryAction] (south korea)[v:CountryName]")
+  last-modified (1675900292573)
+}
