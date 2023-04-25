@@ -1,5 +1,5 @@
 capsule {
-  id (playground.countryinfo)
+  id (playground.countryInfoInitial)
   version (0.1.0)
   format (3)
   targets {

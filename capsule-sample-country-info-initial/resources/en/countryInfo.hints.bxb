@@ -1,0 +1,7 @@
+hints {
+  uncategorized {
+    hint (Ask Country Info, tell me about Italy)
+    hint (Ask Country Info, what is the capital of South Korea)
+    hint (Ask Country Info, what is the population, languages and capital of Peru)
+  }
+}

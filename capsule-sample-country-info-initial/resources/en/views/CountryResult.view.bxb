@@ -1,0 +1,61 @@
+result-view {
+  match: Country (country) {
+    min (Required)
+  }
+  message {
+    if (!exists(country.multipleOptions)) { // multiple options message handled in render
+      template () {
+        speech ("#{value(country.commonName)} is located in #{value(country.continents)}. The capital is #{value(country.capital)} and the population is #{value(country.population)}. The official #{size(country.languages)>1 ? 'languages are':'language is'} #{value(country.languages)} and the #{size(country.currencyNames)>1 ? 'currencies are':'currency is'} #{value(country.currencyNames)}.")
+      }
+    }
+  }
+  render {
+    if (exists(country.multipleOptions)) {
+      macro (MultipleOptions) {
+        param (country) {
+          expression(country)
+        }
+      }
+    }
+    else {
+      layout {
+        section {
+          content {
+            paragraph {
+              value ("Name: #{value(country.commonName)}")
+            }
+            paragraph {
+              value ("Official Name: #{value(country.officialName)}")
+            }
+            paragraph {
+              value ("#{size(country.currencyNames)>1 ? 'Currencies':'Currency'}: #{value(country.currencyNames)}")
+            }
+            paragraph {
+              value ("Capital: #{value(country.capital)}")
+            }
+            paragraph {
+              value ("#{size(country.languages)>1 ? 'Languages':'Language'}: #{value(country.languages)}")
+            }
+            paragraph {
+              value ("[Borders: #{value(country.borders)}]")
+            }
+            paragraph {
+              value ("Population: #{integer(country.population)}")
+            }
+            paragraph {
+              value ("Continents: #{value(country.continents)}")
+            }
+            image {
+              url ("[#{value(country.flagURL)}]")
+            }
+            attribution-link {
+              label(Show Google Map)
+              url("[#{value(country.googleMapsURL)}]")
+            }
+            
+          }
+        }
+      }
+    }
+  }
+}

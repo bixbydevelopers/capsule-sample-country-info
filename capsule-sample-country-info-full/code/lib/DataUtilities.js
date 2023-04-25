@@ -44,7 +44,7 @@ function getBorders (response, debug) {
     }
     if (bords) {
       for (const code of bords) {
-        let name = codeResponse.find(x => x.alpha3Code.includes(code)).name
+        let name = codeResponse.find(x => x.cca3.includes(code)).name.common
         borders.push(name)
       }
     }

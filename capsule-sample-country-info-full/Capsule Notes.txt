@@ -1,0 +1,51 @@
+API Notes
+- Using restcountries.com’s country information API
+- Country borders are returned as a cc3 country code. For usability, this should be converted to an actual country name. A list of country names and codes can be retrieved with this API call - https://restcountries.com/v3.1/all?fields=name,cca3
+- The API supports partial matches, for instance if you search for Korea, you will get both North and South Korea returned. So there needs to be a way for the user to select a country if multiple are returned
+- The database includes territories - for instance searching for United States returns both the country of US but also the “United States Virgin Islands” and searching for China returns China and Hong Kong. 
+- To accommodate the above, there needs to be a way to get the anticipated results for a country name
+
+
+Initial half way capsule supports:
+API call
+Mock data
+All from API notes above
+- Phrases:
+Start (prompt for country)
+Tell me about [country]
+
+
+
+Full capsule adds
+- Ask for particular attributes of a country - e.g. after asking about a country, you can say "what is the capital"
+- UI/voice support for above - includes somewhat complex macros and EL to support 
+- Continuations in training e.g. "what is the capital"
+- Phrases:
+Start (prompt for country)
+Tell me about [country] (Uses training flag, sets value)
+Tell me information about [country] (Use training route - routes through ResetInformationAction)
+Information about [country]
+What is the capital of [country]
+What is the currency of [country]
+What is the official name of [country]
+What is the population of [country]
+What [continent] is [country] in
+What [languages] are spoken in [country]
+What is the capital, population and language of [country] 
+
+Follow on/Continuations:
+How about [country]
+What about [country]
+
+Note: this works
+Tell me about Mexico -> Mexico information
+What is the capital -> Gives capital of Mexico
+What is the currency and populations - Gives currency and population of Mexico
+How about France -> Gives currency and population of France
+
+
+
+
+
+
+

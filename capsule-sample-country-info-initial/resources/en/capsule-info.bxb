@@ -1,0 +1,11 @@
+capsule-info {
+  display-name (Country Information)
+  developer-name (Roger Kibbe)
+  description ("Country Information Advanced Bixby Tutorial")
+  dispatch-name (Country Info)
+  search-keywords {
+    keyword (country information)
+
+  }
+  icon-asset (/images/countries.png)
+}

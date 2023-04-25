@@ -37,7 +37,7 @@ function getCountryCodeToName(debug) {
   if (debug) {
     return COUNTRYCODETONAME
   } else {
-    codeResponse = http.getUrl("https://restcountries.com/v2/all?fields=name,alpha3Code", { format: 'json', returnHeaders: true})
+    codeResponse = http.getUrl("https://restcountries.com/v3.1/all?fields=name,cca3", { format: 'json', returnHeaders: true})
   }
   if (!codeResponse || codeResponse.status != 200) {
     // will gracefully degrade e.g, not show borders

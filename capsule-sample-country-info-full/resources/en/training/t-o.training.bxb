@@ -1,0 +1,4 @@
+train (t-oxq7w2xj17o2wu9a7gb0omclu) {
+  utterance ("[g:CountryAction,r:ResetInformationAction] information about (italy)[v:CountryName]")
+  last-modified (1682459199956)
+}

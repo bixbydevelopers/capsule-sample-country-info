@@ -1,0 +1,5 @@
+train (t-lf2zidosexxhgpargow74i0d0) {
+  utterance ("[g:CountryAction,r:ClearInformation] tell me about (United Arab Emirates)[v:CountryName]")
+  enabled (false)
+  last-modified (1675280628489)
+}

@@ -1,0 +1,62 @@
+structure (Country) {
+  description (CountryInfo)
+  property (commonName) {
+    type (CountryName)
+    visibility (Private)
+    min (Required) max (One)
+  }
+  property (officialName) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Required) max (One)
+  }
+  property (countryCode) {
+    type (CountryCode)
+    visibility (Private)
+    min (Required) max (Many)
+  }
+  property (currencyNames) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Optional) max (Many)
+  }
+  property (capital) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Required) max (One)
+  }
+  property (languages) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Optional) max (Many)
+  }
+  property (borders) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Optional) max (Many)
+  }
+  property (population) {
+    type (viv.core.Integer)
+    visibility (Private)
+    min (Required) max (One)
+  }
+  property (continents) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Required) max (Many)
+  }
+  property (flagURL) {
+    type (viv.core.Name)
+    visibility (Private)
+    min (Required) max (One)
+  }
+  property (googleMapsURL) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Optional) max (One)
+  }
+  property (multipleOptions) {
+    type (MultipleOptions)
+    min (Optional) max (Many)
+  }
+}

@@ -1,0 +1,16 @@
+structure (MultipleOptions) {
+  description (Multiple options for country)
+  property (countryName) {
+    type (CountryName)
+    min (Required) max (One)
+  }
+  property (countryOfficialName) {
+    type (viv.core.Text)
+    visibility (Private)
+    min (Required) max (One)
+  }
+  property (countryCode) {
+    type (CountryCode)
+    min (Required) max (One)
+  }
+}

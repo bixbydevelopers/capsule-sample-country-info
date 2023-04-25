@@ -4,18 +4,14 @@ import {getCountryInfo} from "./lib/APICalls"
 import {checkMultipleOptions, getCurrencies, getLanguages, getBorders} from "./lib/DataUtilities"
 const debug = false
 
-export default function (input) {
-  let {countryName, information, countryCode, resetInformationFlag} = input
+export default function ({countryName, countryCode}) {
 
-   if (debug) console.log ("country name = " + countryName +" information = " + information + " countryCode = " + countryCode + " reset flag = " + resetInformationFlag)
+   if (debug) console.log ("country name = " + countryName + " countryCode = " + countryCode)
 
-  // Set information to null if query is for a new country. This is done using a flag in training
-  if (resetInformationFlag) {
-    information = null
-  }
 
-  // Over rides provide shorts cuts to common queries e.g. if you enter "united states" the over ride sets the country code to USA an uses it
-  // This is necessary because of the oddities of the API
+
+  // Over rides provide shorts cuts to common queries e.g. if you enter "united states" the over ride sets the country code to USA and uses it
+  // This is necessary because the API supports partial matches
   if (OVERRIDES.get(countryName)) {
     countryCode = OVERRIDES.get(countryName.toLowerCase())
     countryName = null
@@ -56,6 +52,5 @@ export default function (input) {
     "continents": response[0]['continents'],
     "flagURL": response[0]['flags']['png'] + "",
     "multipleOptions": multipleOptions,
-    "information": information
   }
 }

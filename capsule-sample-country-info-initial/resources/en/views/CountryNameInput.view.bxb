@@ -1,0 +1,23 @@
+input-view {
+  match: CountryAction~countryInput
+
+  message {
+    template (What country do you want information about?)
+  }
+
+  render {
+    form {
+      on-submit {
+        goal: CountryName
+        value: viv.core.FormElement(countryName)
+      }
+      elements {
+        text-input {
+          id ("countryName")
+          type (CountryName)
+          label (Country Name)
+        }
+      }
+    }
+  }
+}
