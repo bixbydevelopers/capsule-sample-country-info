@@ -8,7 +8,7 @@
 
 This capsule is the starter/initial capsule referenced in the [advanced Bixby tutorial](https://bixbydevelopers.com/)
 
-Please see the [README](https://github.com/bixbydevelopers/capsule-sample-country-info/blob/main/README.md) for the entire repo for more information
+Please see the [README](https://github.com/bixbydevelopers/capsule-sample-country-info/) for the entire repo for more information
 
 ---
 
