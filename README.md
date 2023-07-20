@@ -6,7 +6,7 @@
 
 ## Overview
 
-This repo contains sample code for a tutorial that covers advanced features of the Bixby platform. See the tutorial [here](https://bixbydevelopers.com/)
+This repo contains sample code for a tutorial that covers advanced features of the Bixby platform. See the tutorial [here](https://bixbydevelopers.com/dev/docs/sample-capsules/walkthroughs/tutorial)
 
 The tutorial shows users how to create a Bixby capsule that can answer questions about world countries using a free remote service called [REST Countries](https://restcountries.com/), which provides country information through a JSON API.
 
