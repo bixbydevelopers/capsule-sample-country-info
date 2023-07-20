@@ -6,7 +6,7 @@
 
 ## Overview
 
-This capsule is the full capsule referenced in the [advanced Bixby tutorial](https://bixbydevelopers.com/)
+This capsule is the full capsule referenced in the [advanced Bixby tutorial](https://bixbydevelopers.com/dev/docs/sample-capsules/walkthroughs/tutorial)
 
 Please see the [README](https://github.com/bixbydevelopers/capsule-sample-country-info/) for the entire repo for more information
 
